@@ -2,6 +2,7 @@
 //
 // EX: identity(6) --> 6
 let identity = (val) => {
+  return val;
 };
 
 // Return an array of the first n elements of an array. If n is undefined,
@@ -10,7 +11,12 @@ let identity = (val) => {
 // EX: first([1, 2, 3, 4, 5, 6], 2) --> [1, 2]
 // EX: first([10, 34, 68, 19]) --> 10
 let first = (array, n) => {
+  if (!n) {
+    return array[0];
+  }  
+    return array.slice(0,n);
 };
+
 
 // Like first, but for the last elements. If n is undefined, return just the
 // last element.
@@ -18,6 +24,12 @@ let first = (array, n) => {
 // EX: last([1, 2, 3, 4, 5], 2) --> [4, 5]
 // EX: last([10, 34, 68, 19]) --> 19
 let last = (array, n) => {
+  let last = (array, n) => {
+    if (!n) {
+      return array[array.length - 1];
+    }
+    return array.splice(-n); //Somehow got this to work but I know splice alters the original array.
+  };
 };
 
 // Call iterator(value, key, collection) for each element of collection.
@@ -26,7 +38,13 @@ let last = (array, n) => {
 // each() does not have a return value, but rather simply runs the
 // iterator function over each item in the input collection.
 let each = (collection, iterator) => {
+  var iterator;
+  for (iterator = 0; iterator < collection.length; iterator++) {
+    console.log(collection[iterator]);
+  }
 };
+
+each([2,6,9,3]);
 
 // Returns the index at which value can be found in the array, or -1 if value
 // is not present in the array.
@@ -35,7 +53,8 @@ let each = (collection, iterator) => {
 // EX: indexOf([1, 2, 3], 2) --> 1
 // EX: indexOf([10, 20, 30], 5) --> 0
 let indexOf = (array, target) => {
-};
+  return array.indexOf(target)
+}
 
 // Return all elements of an array that pass a truth test.
 //
@@ -43,7 +62,11 @@ let indexOf = (array, target) => {
 //    val > 2
 // }) --> 3
 let filter = (collection, test) => {
+    var res = collection.filter(i =>  i > 2 ) 
+    console.log(res);
 };
+// filter() returns an arry. Cannot get the test() to run as a param
+
 
 // Return all elements of an array that don't pass a truth test.
 //
@@ -51,6 +74,11 @@ let filter = (collection, test) => {
 //    val < 3
 // }) --> 4, 5
 let reject = (collection, test) => {
+  for (var i = 0; i < collection.length; i++) {
+    if (collection[i] > 3) {
+      console.log(collection[i]);
+     }
+  }
 };
 
 // Produce a duplicate-free version of the array.
