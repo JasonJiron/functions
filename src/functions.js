@@ -38,8 +38,7 @@ let last = (array, n) => {
 // each() does not have a return value, but rather simply runs the
 // iterator function over each item in the input collection.
 let each = (collection, iterator) => {
-  var iterator;
-  for (iterator = 0; iterator < collection.length; iterator++) {
+  for (var iterator = 0; iterator < collection.length; iterator++) {
     console.log(collection[iterator]);
   }
 };
@@ -51,10 +50,13 @@ each([2,6,9,3]);
 // TIP: You can use a standard for loop, or you can reuse the each function from above as a helper function.
 //
 // EX: indexOf([1, 2, 3], 2) --> 1
-// EX: indexOf([10, 20, 30], 5) --> 0
+// EX: indexOf([10, 20, 30], 5) --> -1
 let indexOf = (array, target) => {
-  return array.indexOf(target)
-}
+  for (var i = 0; i < array.length; i++) {
+      var result = array.indexOf(target);
+      return result;
+    }
+  }
 
 // Return all elements of an array that pass a truth test.
 //
@@ -85,6 +87,13 @@ let reject = (collection, test) => {
 //
 // EX: uniq([1, 1, 2, 2, 3, 4, 5]) --> [1, 2, 3, 4, 5]
 let uniq = (array) => {
+  let result = [];
+  for (var i = 0; i < array.length; i++) {
+    if (result.indexOf(array[i]) === -1) {
+      result.push(array[i])
+    }
+  }
+  console.log(result);
 };
 
 
@@ -95,8 +104,11 @@ let uniq = (array) => {
 // map({firstName: 'Kayla', lastName: 'Handy', age: 29}, (item) => {
 //    return item[key]
 // }) --> ['Kayla', 'Handy', 29]
-let map = (collection, iterator) => {
-};
+let map = (collection) => {
+  return Object.values(collection) // I know this works but would like to know the longhand to this solution.
+}
+
+map({firstName: 'Kayla', lastName: 'Handy', age: 29});
 
 // Reduces an array or object to a single value by repetitively calling
 // iterator(accumulator, item) for each item. accumulator should be
@@ -120,21 +132,44 @@ let reduce = (collection, iterator, accumulator) => {
 //
 // contains([1, 2, 3, 4], 3) --> true
 let contains = (collection, target) => {
+  for (var i = 0; i < collection.length; i++) {
+    if (collection[i] === target) {
+      return true
+    }
+    return 'sorry, but no'
+  }
 };
 
+contains([1, 2, 3, 4], 3)
 
 // Determine whether all of the elements pass a truth test.
 //
 // EX: every([1, 2, 3], (item) => {
 //    item < 5
 // }) --> true
-let every = (collection, iterator) => {
-};
+let every = (collection, val) => {
+  for (var i = 0; i < collection.length; i++) {
+    if (collection[i] === val) {
+      return true
+    }
+  }
+  return false
+}
+every([1, 2, 3, 4, 5, 6], 7);
 
 // Determine whether any of the elements pass a truth test.
 //
 // EX: some([1, 2, 3], (item) => {
 //    item < 2
 // }) --> true
-let some = (collection, iterator) => {
+let some = (collection, item) => {
+  for (var i = 0; i < collection.length; i++) {
+    if (collection[i] < item) {
+      return true;
+    }
+  }
+  return false;
 };
+
+
+some([3, 4, 5], 2);
