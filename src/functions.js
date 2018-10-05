@@ -147,15 +147,17 @@ contains([1, 2, 3, 4], 3)
 // EX: every([1, 2, 3], (item) => {
 //    item < 5
 // }) --> true
-let every = (collection, val) => {
+let contains = (collection, target) => {
   for (var i = 0; i < collection.length; i++) {
-    if (collection[i] === val) {
+    if (collection[i] === target) {
       return true
     }
   }
-  return false
-}
-every([1, 2, 3, 4, 5, 6], 7);
+    return target + ' is not in the collection'
+  
+};
+
+contains([1, 2, 3, 4, 5, 6, 90], 90
 
 // Determine whether any of the elements pass a truth test.
 //
