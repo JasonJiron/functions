@@ -23,13 +23,12 @@ let first = (array, n) => {
 //
 // EX: last([1, 2, 3, 4, 5], 2) --> [4, 5]
 // EX: last([10, 34, 68, 19]) --> 19
+
 let last = (array, n) => {
-  let last = (array, n) => {
-    if (!n) {
-      return array[array.length - 1];
-    }
-    return array.splice(-n); //Somehow got this to work but I know splice alters the original array.
-  };
+  if (!n) {
+    return array[array.length - 1];
+  }
+  return array.splice(-n); //Somehow got this to work but I know splice alters the original array.
 };
 
 // Call iterator(value, key, collection) for each element of collection.
